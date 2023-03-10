@@ -1,0 +1,13 @@
+name: circulation
+category: "forensics"
+title:  "Циркулирование"
+points: 100
+author: baksist
+description:  |
+    <p>Компанией «РуМЕГАТИК» представлена новейшая разработка — защищённый маршрутизатор 
+    с инновационной технологией сокрытой передачи данных. У нас есть дамп трафика, снятый с этого устройства. 
+    Так ли секретны сообщения, передаваемые с помощью такого продвинутого роутера?</p>
+generator:  ../_scripts/kyzylborda-lib-generator
+secrets:
+    seed: OWE3NjY4NmMtZTdiNi00N2Q1LWE2YzAt
+    flag: ugra_sum_around_and_check_out_[a-z0-9]{12}

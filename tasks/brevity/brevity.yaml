@@ -1,0 +1,20 @@
+category: ppc
+title:    Краткость — сестра таланта
+points:   150
+author:   baksist
+description: >
+    <p>У широко известной в узких кругах компании ПАО «Агрокекстрой» появилась 
+    своя система учёта пользователей личного кабинета. Интерфейс у неё, конечно, своеобразный...</p>
+generator: ../_scripts/kyzylborda-lib-generator
+bullets:
+  - <code>nc brevity.{{hostname}} 14230</code>
+  - "Токен: <code>{{token}}</code>"
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: tcp
+  tcp_port: 14230
+secrets:
+  seed: MzQzZDM2ZGEtNjUwMy00ZjE3LTg3MzAt
+  flag: ugra_do_you_speak_oneliner_well_i_do_[a-f0-9]{12}

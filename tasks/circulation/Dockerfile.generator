@@ -1,0 +1,4 @@
+FROM imachug/kyzylborda_lib
+RUN pip install dpkt
+WORKDIR /task
+ENTRYPOINT ["kyzylborda-generate", "generator"]
