@@ -55,7 +55,7 @@ shift_id() {
   elif [ 64000 -le "$1" ] && [ "$1" -lt 66000 ]; then
     echo "$(($1 - 64000 + 4000 + 32768))"
   else
-    echo "UID/GID $1 cannot be mapped" >&2
+    echo "UID/GID $1 cannot be mapped (file $3 in box $2)" >&2
     exit 1
   fi
 }
@@ -83,10 +83,10 @@ for box_image_dir in "${box_image_dirs[@]}"; do
   while IFS="" read -r line; do
     read -r uid gid < <(<<<"$line" cut -d" " -f1,2)
     file_path="$(<<<"$line" cut -d" " -f3-)"
-    mapped_uid="$(shift_id "$uid")"
-    mapped_gid="$(shift_id "$gid")"
+    mapped_uid="$(shift_id "$uid" "$box_name" "$file_path")"
+    mapped_gid="$(shift_id "$gid" "$box_name" "$file_path")"
     command="$command && chown -h $mapped_uid:$mapped_gid /images/$box_name$file_path"
-  done < <(docker run --entrypoint /bin/sh "$box_image_name" -c 'find / -xdev \( -not -user 0 -or -not -group 0 \) -exec stat -c "%u %g %n" {} +')
+  done < <(docker run --user 0 --entrypoint /bin/sh "$box_image_name" -c 'find / -xdev \( -not -user 0 -or -not -group 0 \) -exec stat -c "%u %g %n" {} +')
 
   if [ "$command" != "true" ]; then
     final_image_dockerfile="${final_image_dockerfile}RUN $command"$'\n'
