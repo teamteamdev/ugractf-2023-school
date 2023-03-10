@@ -1,4 +1,4 @@
-# qrec2: Write-Up
+# Очень удалённый доступ: Write-Up
 
 В этот раз нас просят написать программу на том же языке, что и раньше, но вместо виртуальной машины, написанной на Python, дают "компилятор", транслирующий программу в ассемблер x86-64.
 
@@ -140,11 +140,11 @@ Start              End                Offset             Perm Path
 0x0000555555557000 0x0000555555558000 0x0000000000002000 r-- /tmp/a.out
 0x0000555555558000 0x0000555555559000 0x0000000000003000 rw- /tmp/a.out
 0x0000555555559000 0x0000555555561000 0x0000000000000000 rw- [heap]
-0x00007ffff7c00000 0x00007ffff7c22000 0x0000000000000000 r-- /home/ivanq/qrec2/libc.so.6
-0x00007ffff7c22000 0x00007ffff7d9b000 0x0000000000022000 r-x /home/ivanq/qrec2/libc.so.6
-0x00007ffff7d9b000 0x00007ffff7df2000 0x000000000019b000 r-- /home/ivanq/qrec2/libc.so.6
-0x00007ffff7df2000 0x00007ffff7df6000 0x00000000001f1000 r-- /home/ivanq/qrec2/libc.so.6
-0x00007ffff7df6000 0x00007ffff7df8000 0x00000000001f5000 rw- /home/ivanq/qrec2/libc.so.6
+0x00007ffff7c00000 0x00007ffff7c22000 0x0000000000000000 r-- /home/ivanq/moonshot/libc.so.6
+0x00007ffff7c22000 0x00007ffff7d9b000 0x0000000000022000 r-x /home/ivanq/moonshot/libc.so.6
+0x00007ffff7d9b000 0x00007ffff7df2000 0x000000000019b000 r-- /home/ivanq/moonshot/libc.so.6
+0x00007ffff7df2000 0x00007ffff7df6000 0x00000000001f1000 r-- /home/ivanq/moonshot/libc.so.6
+0x00007ffff7df6000 0x00007ffff7df8000 0x00000000001f5000 rw- /home/ivanq/moonshot/libc.so.6
 0x00007ffff7df8000 0x00007ffff7e05000 0x0000000000000000 rw- 
 0x00007ffff7fbc000 0x00007ffff7fc1000 0x0000000000000000 rw- 
 0x00007ffff7fc1000 0x00007ffff7fc5000 0x0000000000000000 r-- [vvar]

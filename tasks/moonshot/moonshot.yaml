@@ -1,6 +1,6 @@
 category: pwn
 points: 300
-title: Fault outside brackets after Segmentation
+title: Очень удалённый доступ
 author: ivanq
 description: >
   <p>
