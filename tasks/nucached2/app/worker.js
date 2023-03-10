@@ -10,7 +10,7 @@ const STORES = {
 	secrets: {
 		writable: true,
 		value: {
-			flag: "ugra_this_is_not_the_flag_you_are_looking_for"
+			flag: "this_is_not_the_flag_you_are_looking_for"
 		}
 	},
 	main: {
@@ -151,7 +151,7 @@ function listKeys() {
 					iters: 0
 				};
 				result += ":\n";
-				result += listKeysImpl(value, "  ", state);
+				result += listKeysImpl(value, `  ${store}.`, state);
 				if(state.iters > 100) {
 					result += "<i>more lines not shown</i>\n";
 				}

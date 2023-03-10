@@ -109,7 +109,7 @@ function listKeys() {
 					iters: 0
 				};
 				result += ":\n";
-				result += listKeysImpl(value, "  ", state);
+				result += listKeysImpl(value, `  ${store}.`, state);
 				if(state.iters > 100) {
 					result += "<i>more lines not shown</i>\n";
 				}
