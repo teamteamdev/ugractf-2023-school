@@ -1,0 +1,9 @@
+category:  ppc
+points:    250
+title:     "[ДАННЫЕ УДАЛЕНЫ]"
+author:    ivanq
+description: >
+    <p>Наш агент справился достать данные с сервера конкурентов. Продолжить работу он, к сожалению, не может, так что декодированием придется заняться вам.</p>
+attachments_path: attachments
+flags:
+    - ugra_airgaps_can_be_bypassed_6m2amyh2xtwm
