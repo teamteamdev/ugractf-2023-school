@@ -1,0 +1,5 @@
+socket: unix:/tmp/app.sock
+healthcheck:
+  connect: unix:/tmp/app.sock
+volumes:
+  - ./:/app:ro

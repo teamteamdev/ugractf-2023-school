@@ -1,0 +1,28 @@
+category: pwn
+points: 300
+title: Fault outside brackets after Segmentation
+author: ivanq
+description: >
+  <p>
+    Вася из таска <a href="https://github.com/teamteamdev/ugractf-2023-quals/tree/master/tasks/qrec">Советские
+    вступительные в ясельный класс</a> подумал-подумал и решил, что слишком упростил вам задачу,
+    поделившись с вами эмулятором его машины. Ведь ему приходится дебагать код глазами, а у вас
+    возможности сильно больше, поэтому вы не можете полностью разделить с ним его боль.
+  </p>
+
+  <p>
+    &mdash; Пора исправлять ошибку, &mdash; подумал Вася и дал вам прямой доступ к своему
+    компьютеру.
+  </p>
+
+  {{reboot_machine}}
+attachments_path: attachments
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: TobBq1OMyMxDDm/feNdmRCyi202n4NjD
+  flag: ugra_friendly_reminder_that_web_browsers_use_jit_too_[a-z0-9]{12}
