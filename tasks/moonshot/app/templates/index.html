@@ -80,7 +80,7 @@ push a</textarea>
         </div>
         <div class="output">
           <div class="title">OUTPUT</div>
-          <textarea readonly>1</textarea>
+          <textarea readonly>3</textarea>
         </div>
       </div>
     </main>
@@ -91,7 +91,7 @@ push a</textarea>
         const input = document.querySelector(".input textarea").value;
         const output = document.querySelector(".output textarea");
         output.value = "";
-        output.placeholder = "Computing...";
+        output.placeholder = "Ждём ответа с Луны...";
         const formData = new FormData();
         formData.append("code", code);
         formData.append("input", input);
