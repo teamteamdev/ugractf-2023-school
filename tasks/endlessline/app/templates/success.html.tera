@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Comic Sans MS', sans-serif;
+            line-break: anywhere;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        p {
+            color: #ffffff;
+        }
+        error {
+            color: #FF0000;
+        }
+    </style>
+    <title>Вы прошли очередь.</title>
+</head>
+<body>
+    <h1>Большое спасибо за ваше ожидание!</h1>
+    <p>Вы прошли очередь.</p>
+    <p>Ваше место в очереди: уже не важно.</p>
+    <p>Ваше время ожидания: уже прошло.</p>
+    <p>Ваш флаг: <error>{{ flag }}</error></p>
+    <p>Спасибо за ожидание.</p>
+</body>
+</html>
