@@ -1,0 +1,21 @@
+category:  ctb
+points:    200
+title:     Nucached 2.0
+author:    ivanq
+description: >
+  <p><i>Это задание &mdash; продолжение задания <a href="../nucached/">Nucached</a>.</i></p>
+
+  <p>После того, как Васе на hackernews вежливо намекнули, что в текущем виде nucached выглядит,
+  мягко говоря, не очень, тот обиделся и вынес проект из open-source, но фичи допиливать не
+  прекратил. Но стало ли лучше?..</p>
+
+  {{reboot_machine}}
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: OcF/BBr786VinfPIMTbOJuempUNOaKtE
+  flag: ugra_you_should_have_rewritten_it_in_rust_[a-z0-9]{12}

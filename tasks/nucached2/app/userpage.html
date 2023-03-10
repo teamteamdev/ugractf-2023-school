@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>nucached</title>
+		<style type="text/css">
+			input {
+				font: inherit;
+				width: calc(100% - 30px);
+				border: none;
+				outline: none;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<pre><b>&gt;</b> <input type="text" id="command" placeholder="Type command here..."></pre>
+		<pre id="logs"></pre>
+
+		<script type="text/javascript">
+			const token = location.pathname.replace(/\//g, "");
+
+			const command = document.querySelector("#command");
+			const logs = document.querySelector("#logs");
+
+			command.focus();
+
+			command.addEventListener("keypress", async e => {
+				if(e.key === "Enter") {
+					command.readOnly = true;
+					let result;
+					try {
+						result = await runCommand(command.value);
+					} catch(e) {
+						result = `<span style="color: red;">${escapeHTML(e.toString())}</span>\n`;
+					}
+					logs.innerHTML = `<b>&gt; ${escapeHTML(command.value)}</b>\n${result}\n${logs.innerHTML}`;
+					command.value = "";
+					command.readOnly = false;
+				}
+			});
+
+			async function runCommand(command) {
+				command = command.trim();
+				if(command === "") {
+					return "";
+				} else if(command === "help") {
+					return `nucached: a revolutionary alternative to memcached!\n(c) 2003, Vasya Pupkin\nUsage:\n  help: Show this message\n  get <i>key</i>: Show key <i>key</i>\n  set <i>key</i> <i>value</i>: Set the value of <i>key</i> to <i>value</i>\n  ls: List all keys\n  exec <i>key</i>: Execute script from key <i>key</i>\nNested key-value objects are supported, e.g. <i>set a.b.c value</i>.\n`;
+				} else if(command.startsWith("get ")) {
+					return await run("get-key", {key: command.slice(4)});
+				} else if(command.startsWith("exec ")) {
+					return await run("execute-key", {key: command.slice(5)});
+				} else if(command.startsWith("set ")) {
+					const arg = command.slice(4);
+					const index = arg.indexOf(" ");
+					if(index === -1) {
+						return `<i>invalid syntax</i>\n`;
+					}
+					const value = JSON.parse(arg.slice(index + 1));
+					return await run("set-key", {key: arg.slice(0, index), value});
+				} else if(command === "ls") {
+					return await run("list-keys", {});
+				} else {
+					return `Unknown command ${escapeHTML(command)}, try <i>help</i>.\n`
+				}
+			}
+
+			function escapeHTML(html) {
+				return html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+			}
+
+
+			async function run(command, args) {
+				return await (await fetch(`/${token}/${command}`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(args)
+				})).text();
+			}
+		</script>
+	</body>
+</html>

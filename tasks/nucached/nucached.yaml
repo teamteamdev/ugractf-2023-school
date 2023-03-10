@@ -1,0 +1,19 @@
+category:  web
+points:    150
+title:     Nucached
+author:    ivanq
+description: >
+  <p>memcached занимает 250 килобайт. И кажется, джуниор Вася увидел здесь простор для
+  оптимизации...</p>
+
+  {{reboot_machine}}
+attachments_path: attachments
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: lVeO8RdIW3R1Xe3Kjj53KOueXpxk8Prm
+  flag: ugra_now_go_patch_your_own_websites_[a-z0-9]{12}

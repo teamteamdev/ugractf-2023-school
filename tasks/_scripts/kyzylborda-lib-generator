@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p coreutils -p docker-compose -p bubblewrap -p pkgs.docker
+#!/usr/bin/env bash
 set -eET -o pipefail
 shopt -s inherit_errexit
 
