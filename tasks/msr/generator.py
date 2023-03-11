@@ -151,4 +151,4 @@ def generate(argv):
     json.dump(output, sys.stdout)
 
 if __name__ == "__main__":
-    generate()
+    generate(sys.argv)
