@@ -135,7 +135,7 @@ def generate(argv):
     source = source.replace("/*CHECKSUM_PLACEHOLDER*/", checksum_placeholder)
 
     checksum_len = len(checksum)
-    source = source.replace("/*CHECKSUM_PLACEHOLDER*/", str(checksum_len))
+    source = source.replace("/*CHECKSUM_LEN_PLACEHOLDER*/0", str(checksum_len))
 
     with open(os.path.join(workdir, "msr.c"), "w") as df:
         df.write(source)

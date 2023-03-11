@@ -24,7 +24,7 @@ unsigned long long SECRET_NUMBER =  42;
 
 char checksum[] = {/*CHECKSUM_PLACEHOLDER*/};
 // char checksum[] = {233, 29, 216, 204, 222, 101, 72, 187, 193, 107, 222, 175, 227, 116, 71, 187, 123, 220, 192, 131, 109, 218, 232, 191, 205, 183, 114, 113, 104 };
-int checksum_len = /*CHECKSUM_PLACEHOLDER*/0; // paste here
+int checksum_len = /*CHECKSUM_LEN_PLACEHOLDER*/0; // paste here
 
 char *send_to_server = NULL;
 int send_to_server_len = 0;
