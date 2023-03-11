@@ -136,12 +136,15 @@ def generate(argv):
 
     checksum_len = len(checksum)
     source = source.replace("/*CHECKSUM_LEN_PLACEHOLDER*/0", str(checksum_len))
+    
+    os.makedirs(os.path.join(workdir, "attachments"), exist_ok=True)
 
     with open(os.path.join(workdir, "msr.c"), "w") as df:
         df.write(source)
     
     #Make with gcc
-    os.system(f"cd {workdir} && gcc -Wall -s msr.c -o msr.elf -lncurses")
+    rpath = os.path.join("attachments", "msr.elf")
+    os.system(f"cd {workdir} && gcc -Wall -s msr.c -o {rpath} -lncurses")
     
     #delete c file
     os.system(f"cd {workdir} && rm msr.c")
