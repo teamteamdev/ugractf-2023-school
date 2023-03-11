@@ -1,0 +1,16 @@
+category: web
+points: 200
+title: Решите капчу за нас
+author: gudn
+description: >
+  <p>Мы занимаемся разработкой восходящего искуственного интеллекта и сейчас находимся на стадии сбора данных. К сожалению, мы столкнулись с проблемой: сайты с ценными данными защищены капчами.</p>
+  <p>Поэтому мы приняли решение найти аутсорс: люди будут решать капчи для нас, а мы <em>собираемся</em> им заплатить. Звучит как хороший план. Хотите немного подзаработать?</p>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: app
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: tkloSsJas3fFCQIGZyi54ehiGMYI1KkTSFjn6wew
+  flag: ugra_thanks_and_give_your_money_[a-z0-9]{12}

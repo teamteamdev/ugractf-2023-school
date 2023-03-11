@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Вы Капча?</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <style>
+      .input {
+        display: flex;
+        justify-content: space-between;
+        justify-items: center;
+        align-content: center;
+      }
+
+      .input input {
+        width: 80%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0;
+        margin-right: 0.5rem;
+      }
+
+      .input button {
+        width: 20%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
+        margin-right: 0;
+      }
+
+      img {
+        border: 0.1rem solid black;
+        border-radius: 0.5rem;
+        width: 600px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>Как вы помните, нам надо решить капчу. Правила просты: вы нам решение для капчи, а мы вам деньги. Вывод от 10$.</p>
+
+      <form action="{{ url }}" method="POST">
+        <figure>
+          <image alt="Captcha is here" src="{{image}}" />
+          <figcaption>Следуйте радуге...</figcaption>
+        </figure>
+        <div class="input">
+          <input type="text" name="answer" placeholder="Kitty" />
+          <button type="submit">Отправить</button>
+        </div>
+      </form>
+
+      <details>
+        <summary>Ваши заслуги</summary>
+        <p>Вы решили <strong>{{count}}</strong> каптч и заработали <strong>{{cash}}$<strong>.<p>
+        {% if flag %}
+        <p><code>{{flag}}</code></p>
+        {% endif %}
+      </details>
+    </main>
+  </body>
+</html>

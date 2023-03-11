@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "classic-generator"
+version = "0.1.0"
+description = ""
+authors = ["Vanya Klimenko <k60+git@fmap.me>"]
+packages = [
+    { include = "generator.py" },
+    { include = "private" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+machfs = "^1.3"
+macresources = "^1.2"
+pillow = "^9.4.0"
+
+[tool.poetry.scripts]
+classic-generator = "generator:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

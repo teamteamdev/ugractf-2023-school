@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  memcached:
+    image: memcached:1.6.15-alpine
+    command: memcached -p 11211
+  web:
+    build: .
+    environment:
+    - TASK_NAME
+    user: "${DOCKER_USER}"
+    volumes:
+    - "${TMPDIR}:/tmp"
+    - "${STATEDIR}:/state"
+    - "../:/task:ro"
+    depends_on:
+    - memcached

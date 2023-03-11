@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  memcached:
+    image: memcached:1.6.15-alpine
+    command: memcached -p 11211
+  web:
+    build: .
+    environment:
+    - TASK_NAME
+    - FLASK_DEBUG=1
+    - FLASK_APP=server.py
+    user: "${DOCKER_USER}"
+    command: flask run --host 0.0.0.0 --port 8080
+    volumes:
+    - "${TMPDIR}:/tmp"
+    - "${STATEDIR}:/state"
+    - "../:/task:ro"
+    - ".:/app"
+    ports: ['8080:8080']
+    depends_on:
+    - memcached

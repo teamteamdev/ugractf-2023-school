@@ -1,0 +1,4 @@
+flask
+pillow
+flask_limiter
+pymemcache>3,<5.0.0
