@@ -143,6 +143,6 @@ done | grep -v "JABCode Error" | uniq | base64 -d >flag.png
 
 В результате получаем файл:
 
-![flag.png](flag.png)
+![flag.png](writeup/flag.png)
 
 Флаг: **ugra_airgaps_can_be_bypassed_6m2amyh2xtwm**.
