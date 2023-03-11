@@ -214,8 +214,7 @@ def run_code(code, input):
     try:
         c_code = generate_c_code(code)
     except CompilationError as e:
-        print('Error while compiling code:', str(e), file=sys.stderr)
-        sys.exit(1)
+        return "Error while compiling code:\n" + str(e)
 
     result = subprocess.run([
         "gcc",
