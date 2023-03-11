@@ -1,5 +1,5 @@
 FROM ubuntu:22.10
-RUN apt-get update && apt-get install -y gcc python3 python3-pip
+RUN apt-get update && apt-get install -y gcc python3 python3-pip cowsay
 RUN pip install gunicorn
 WORKDIR /app
 COPY requirements.txt requirements.txt

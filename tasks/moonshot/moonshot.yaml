@@ -25,6 +25,11 @@ description: >
     Добавлена прямая ссылка на спецификацию виртуальной машины.
   </p>
 
+  <p><em>Добавлено в 15:45:</em></p>
+  <p>
+    Исполняемый файл теперь линкуется статически.
+  </p>
+
   {{reboot_machine}}
 attachments_path: attachments
 generator: ../_scripts/kyzylborda-lib-generator

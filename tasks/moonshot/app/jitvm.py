@@ -162,6 +162,8 @@ def generate_c_code(asm_code):
 unsigned long long stack[4096];
 
 int main(int argc, char **argv) {{
+    system("/usr/games/cowsay Running...");
+
     int stack_size = argc - 1;
     for(int i = 0; i < stack_size; i++) {{
         stack[stack_size - 1 - i] = atoll(argv[1 + i]);
@@ -221,8 +223,9 @@ def run_code(code, input):
         "-x", "c",
         "-g",
         "-o", "/tmp/a.out",
-        "-Xlinker", "-rpath=" + os.path.dirname(os.path.abspath(__file__)),
-        "-"
+        "-static",
+        "-L.",
+        "-",
     ], input=c_code.encode(), capture_output=True)
     if result.returncode != 0:
         text = "Compilation failed:\n\n"

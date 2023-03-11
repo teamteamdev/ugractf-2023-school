@@ -1,0 +1,2 @@
+app/libc.a filter=lfs diff=lfs merge=lfs -text
+attachments/libc.a filter=lfs diff=lfs merge=lfs -text
