@@ -4,7 +4,6 @@ title:     Minimum system requirements
 author:    Rozetkin
 description: >
     <p>Ох, я не уверен, что ваш компьютер потянет этот высокотехнологичный лабиринт. В любом случае вы можете попробовать.</p>
-attachments_path: attachments
 generator: kyzylborda-docker-generator Dockerfile.generator ./generator.py
 daemon:
   exec: kyzylborda-docker-compose-daemon
