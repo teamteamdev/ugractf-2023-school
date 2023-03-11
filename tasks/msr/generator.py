@@ -145,6 +145,10 @@ def generate(argv):
     #delete c file
     os.system(f"cd {workdir} && rm msr.c")
 
-    return {
+    output = {
         "flags": [ get_flag(SECRET_NUMBER) ],
     }
+    json.dump(output, sys.stdout)
+
+if __name__ == "__main__":
+    generate()
