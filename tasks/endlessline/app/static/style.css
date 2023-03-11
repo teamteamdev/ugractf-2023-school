@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Playfair+Display:wght@400;700&display=swap');
+
+body {
+    background: linear-gradient(to left, #00bb77, #33cc66) 100% 100% no-repeat;
+    min-height: 100vh;
+    font-family: Golos text, sans-serif;
+    margin: 0;
+}
+
+.logo {
+    font-size: 2em;
+    line-height: 0.8em;
+    font-weight: bold;
+    font-style: italic;
+    color: #00bb77;
+    letter-spacing: 1px;
+}
+
+.logo img {
+    height: 0.75em;
+    vertical-align: bottom;
+}
+
+header {
+    background: #fff;
+    padding: 20px 30px;
+    box-shadow: 0 2px 14px -6px #034;
+}
+
+h1, h2, h3, h4 {
+    font-family: Playfair Display, Georgia, serif;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid #eeff88;
+    color: #eeff88;
+    padding: 10px 50px 15px;
+    margin: 2em auto 1.25em;
+    width: 406px;
+}
+
+h2 {
+    font-weight: bold;
+    color: #00bb77;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: -.5em;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+}
+
+section {
+    background: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 32px;
+    box-shadow: 0 2px 20px -6px #0343;
+}
+
+.payments {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    margin-top: 20px;
+}
+
+img.leet {
+    height: 3em;
+}
+
+error {
+    font-size: 1.25em;
+    font-family: monospace;
+    background: #fed;
+    border: #9305 1px solid;
+    color: #930;
+    padding: 10px;
+    line-height: 2.25em;
+}

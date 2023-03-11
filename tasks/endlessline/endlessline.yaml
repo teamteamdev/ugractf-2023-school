@@ -3,8 +3,8 @@ points: 150
 title: Очередь
 author: astra
 description: >
-  <p>здрасьте, я тут немного поправила вашу очередь, теперь она работает быстрее и надежнее</p>
-generator: ../_scripts/kyzylborda-lib-generator
+  <p>Извините, но нагрузка слишком большая, придётся подождать в очереди.</p>
+generator: ./run_generator.sh
 daemon:
   exec: kyzylborda-docker-compose-daemon
   cwd: app

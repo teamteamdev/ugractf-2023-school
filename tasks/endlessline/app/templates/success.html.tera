@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Comic Sans MS', sans-serif;
-            line-break: anywhere;
-        }
-        h1 {
-            color: #ffffff;
-        }
-        p {
-            color: #ffffff;
-        }
-        error {
-            color: #FF0000;
-        }
-    </style>
-    <title>Вы прошли очередь.</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/style.css">
+        <title>Вы прошли очередь - РОСМОСГОСКОСМОС БАНК</title>
+    </head>
+    <body>
+        <header>
+            <div class="logo"><img src="/static/logo.jpg"> БАНК</div>
+        </header>
+        <h1>Добро пожаловать</h1>
+
+        <section>
+            <h2>Большое спасибо за ваше ожидание в очереди!</h2>
+
+            <h3 style="font-size: 2em">Вы прошли очередь в очереди.</h3>
+            <p>Спасибо за ваше терпение в очереди.</p>
+            <h4>Ваше место в очереди: <i>уже не важно</i> (в очереди).</h4>
+            <p>Ваше время ожидания: <i>уже прошло</i> (в очереди).</p>
+            <h4>Ваш флаг: <b><error>{{ flag }}</error></b></h4>
+            <p>Спасибо за ожидание в очереди.</p>
+        </section>
+
+        <div class="payments">
+            <div style="text-align: right; padding: 20px">
+                <img src="/static/leet.png" class="leet"><br>
+                <p>
+                    <b>Платёжная система ЛИТ</b><br>
+                    104-битовое шифрование ГОСТ Р 34.2012
+                </p>
+            </div>
+            <div style="padding: 20px">
+                <h3 style="margin: 0">
+                    Записаться в контакт-центр:<br>
+                    <span style="font-size: 2em; line-height: 0.5em;">1337</span>
+                </h3>
+                <p style="line-height: 0.5em; margin-top: 0; opacity: .5"><small style="font-size: 0.8em; letter-spacing: -0.05em">С мобильного или городского.<br><br>Звонок платный, требуется<br>предварительная запись<br>в очередь по телефону.</small></p>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
 <body>
-    <h1>Большое спасибо за ваше ожидание!</h1>
-    <p>Вы прошли очередь.</p>
-    <p>Ваше место в очереди: уже не важно.</p>
-    <p>Ваше время ожидания: уже прошло.</p>
-    <p>Ваш флаг: <error>{{ flag }}</error></p>
-    <p>Спасибо за ожидание.</p>
+
 </body>
 </html>

@@ -8,27 +8,14 @@ RUN apt-get update && apt-get install -y socat
 
 RUN rustup default nightly-2023-03-09
 
-RUN USER=root cargo new --bin app
-
+COPY app /app
 WORKDIR "/app"
-
-COPY app/Cargo.toml ./Cargo.toml
-COPY app/Cargo.lock ./Cargo.lock
-
-RUN cargo build --release && rm -rf src
-
-COPY app/src ./src
-COPY app/templates ./templates
-COPY app/start.sh ./start.sh
-
-RUN cargo build --release
-
 
 RUN mkdir -p /tmp
 VOLUME ["/tmp"]
 RUN rm -f /tmp/app.sock
 VOLUME ["/app/target"]
 
-RUN cargo build
+RUN cargo build --release
 
 CMD ["bash", "-c", "./start.sh"]

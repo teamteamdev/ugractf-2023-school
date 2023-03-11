@@ -2,12 +2,15 @@
 use rocket_dyn_templates::{Template, context};
 use rocket::http::CookieJar;
 use rocket::http::Cookie;
+use rocket::fs::FileServer;
 use rand::Rng;
 use chrono::TimeZone;
 use crc32fast::Hasher;
 use sha2::{Sha256, Digest};
+use hex;
 
 const COOKIE_NAME: &str = "status";
+const COOKIE_HASH_NAME: &str = "status_hash";
 
 const FLAG_PREFIX: &str = "ugra_spasibo_za_ozhidaniye_";
 const FLAG_SEED: &str = "helloWORLDthisISaSUPERsecureSECRETseed"; // CHANGEME
@@ -21,27 +24,29 @@ enum ErrorType {
 }
 
 fn gen_flag(token: String) -> String {
-  // This function in python:
-  // return PREFIX + hmac.new(SECRET, token.encode(), "sha256").hexdigest()[:SUFFIX_SIZE]
+  // Generate a flag using the token
+  // This code in python:
+  //def get_flag(token):
+  //  return PREFIX + hmac.new(FLAG_SEED, token.encode(), "sha256").hexdigest()[:SUFFIX_SIZE]
 
   let mut hasher = Sha256::new();
-  // Use the seed as the key and the token as the message
   hasher.update(FLAG_SEED.as_bytes());
   hasher.update(token.as_bytes());
   let result = hasher.finalize();
-  let result = format!("{:x}", result);
-
-  format!("{}{}", FLAG_PREFIX, &result[..SUFFIX_LENGTH])
+  let result = hex::encode(result);
+  println!("{}", result);
+  let result = result[..SUFFIX_LENGTH].to_string();
+  FLAG_PREFIX.to_string() + &result
 }
 
 fn get_queue_position() -> i32 {
-  // Generate a random number between 30 and 100
-  rand::thread_rng().gen_range(30..100)
+  // Generate a random number between 90 and 500
+  rand::thread_rng().gen_range(90..500)
 }
 
 fn get_time_to_wait(pos: i32) -> i32 {
-  // Generate a random number between 5 and 50 and multiply it by the queue position
-  pos * rand::thread_rng().gen_range(5..50)
+  // Generate a random number between 5 and 15 and multiply it by the queue position
+  pos * rand::thread_rng().gen_range(5..15)
 }
 
 fn update_cookies(cookies: &CookieJar<'_>, queue_pos: i32, time_to_wait: i32) -> String {
@@ -53,12 +58,13 @@ fn update_cookies(cookies: &CookieJar<'_>, queue_pos: i32, time_to_wait: i32) ->
   let cookie_data = format!("{},{},{}", queue_pos, time_to_wait, time_updated);
   hasher.update(&cookie_data.as_bytes());
   hash = hasher.finalize();
-  
-  // Write the cookie data to a string including the hash
-  let cookie_data = format!("{},{},{},{}", queue_pos, time_to_wait, time_updated, hash);
+
+  // Convert the hash to a hex string
+  let hash = format!("{:x}", hash);
 
   // Set the cookie
   cookies.add(Cookie::new(COOKIE_NAME, cookie_data));
+  cookies.add(Cookie::new(COOKIE_HASH_NAME, hash));
 
   // Return the time updated
   time_updated
@@ -85,7 +91,7 @@ fn update_times<'a>(cookies: &'a CookieJar<'a>, time_updated: String, mut queue_
     // If not, move the user 1 place down in the queue and update the time to wait
     queue_pos += 1;
     time_to_wait += get_time_to_wait(1);
-  } 
+  }
 
   // Update the cookies
   update_cookies(cookies, queue_pos, time_to_wait);
@@ -103,7 +109,7 @@ fn gen_error_text(error: ErrorType) -> &'static str {
     "Кажется, кто-то пытается нас взломать. Наряд хакеров уже в пути.",
     "Блин да как так-то???",
   ];
-  
+
   let negative_queue_pos_responces = [
     "Замечен разрыв непрерывном полотне очереди. Ближайший математик оповещен.",
     "Кто-то пытался взять вас за хвост. Но мы его заметили и убрали. Пожалуйста заберите свой хвост в кабинете номер 502.",
@@ -152,31 +158,37 @@ fn index(cookies: &CookieJar<'_> , token: String) -> Template {
   let cookie_data;
   let mut hasher = Hasher::new();
   let hash;
-  let error_text;
+  let mut error_text ="";
 
   println!("flag: {}", gen_flag(token.clone()));
 
-  if cookies.get(COOKIE_NAME).is_none() {
+  if cookies.get(COOKIE_NAME).is_none() || cookies.get(COOKIE_HASH_NAME).is_none() {
+    if cookies.get(COOKIE_NAME).is_some() || cookies.get(COOKIE_HASH_NAME).is_some() {
+      // If only one of the cookies exists, delete them both and add an error
+      cookies.remove(Cookie::named(COOKIE_NAME));
+      cookies.remove(Cookie::named(COOKIE_HASH_NAME));
+      error_text = gen_error_text(ErrorType::HashMismatch);
+    }
+
     // If the cookies don't exist, generate them
     queue_pos = get_queue_position();
     time_to_wait = get_time_to_wait(queue_pos);
-    
+
     time_updated = update_cookies(cookies, queue_pos, time_to_wait);
-    
+
   } else {
     // If the cookie exists, get the data from it
     cookie_data = cookies.get(COOKIE_NAME).unwrap().value().to_string();
 
-    // Split the cookie data into an array
-    let mut cookie_data: Vec<&str> = cookie_data.split(",").collect();
+    // Get the hash from the cookie data
+    hash = cookies.get(COOKIE_HASH_NAME).unwrap().value().to_string();
 
-    // Get the hash from the cookie data and remove it from the array
-    hash = cookie_data[3].parse::<u32>().unwrap();
-    cookie_data.pop();
+    // Split the cookie data into an array
+    let cookie_data: Vec<&str> = cookie_data.split(",").collect();
 
     // Compare the hash with the hash of the cookie data
     hasher.update(&cookie_data.join(",").as_bytes());
-    if hasher.finalize() != hash {
+    if format!("{:x}", hasher.finalize()) != hash {
       // If the hashes don't match, delete the cookie and redirect to the index page
       println!("Hashes don't match! Deleting cookie... ");
       error_text = gen_error_text(ErrorType::HashMismatch);
@@ -220,6 +232,14 @@ fn index(cookies: &CookieJar<'_> , token: String) -> Template {
     })
   }
 
+  if !error_text.is_empty() {
+    return Template::render("index", context! {
+      queue_position: queue_pos,
+      time_to_wait: time_to_wait,
+      error_text: error_text,
+    })
+  }
+
   // Update the queue position and time to wait
   let (queue_pos, time_to_wait, error_text) = update_times(cookies, time_updated, queue_pos, time_to_wait);
 
@@ -241,5 +261,6 @@ fn index(cookies: &CookieJar<'_> , token: String) -> Template {
 #[launch]
 fn rocket() -> _ {
   rocket::build().attach(Template::fairing())
+    .mount("/static", FileServer::from("./static"))
     .mount("/", routes![index])
 }
