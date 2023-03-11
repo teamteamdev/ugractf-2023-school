@@ -115,7 +115,8 @@ def get_flag(num):
 
 def generate(argv):
     try:
-        user_id, workdir = argv[1:]
+        user_id = argv[1]
+        workdir = argv[2]
     except:
         print("Usage: generate.py user_id target_dir", file=sys.stderr)
         sys.exit(1)
