@@ -14,7 +14,7 @@ PREFIX = "ugra_you_are_a_power_macintosh_user_"
 def get_flag(user_id):
     user_id_enc = str(user_id).encode()
     suffix = hmac.new(SECRET, user_id_enc, "sha256").hexdigest()
-    flag = PREFIX + suffix[:16]
+    flag = PREFIX + suffix[:8]
     return flag
 
 
