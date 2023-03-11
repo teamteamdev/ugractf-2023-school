@@ -144,7 +144,7 @@ def generate(argv):
     
     #Make with gcc
     rpath = os.path.join("attachments", "msr.elf")
-    os.system(f"cd {workdir} && gcc -Wall -s msr.c -o {rpath} -lncurses")
+    os.system(f"cd {workdir} && gcc -Wall msr.c -o {rpath} -lncurses")
     
     #delete c file
     os.system(f"cd {workdir} && rm msr.c")
