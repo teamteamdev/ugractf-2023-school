@@ -1,0 +1,5 @@
+writeup/basilisk-settings.png filter=lfs diff=lfs merge=lfs -text
+writeup/ugra.png filter=lfs diff=lfs merge=lfs -text
+writeup/alert.png filter=lfs diff=lfs merge=lfs -text
+writeup/drag-n-drop.png filter=lfs diff=lfs merge=lfs -text
+writeup/flag.png filter=lfs diff=lfs merge=lfs -text
