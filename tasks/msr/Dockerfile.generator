@@ -1,1 +1,5 @@
-FROM imachug/kyzylborda_lib
+FROM python:3.9-bullseye
+RUN apt update && apt install -y --no-install-recommends \
+    gcc \
+    ncurses-dev
+
