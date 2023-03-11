@@ -1,0 +1,12 @@
+category:  reverse
+points:    400
+title:     Minimum system requirements
+author:    Rozetkin
+description: >
+    <p>Ох, я не уверен, что ваш компьютер потянет этот высокотехнологичный лабиринт. В любом случае вы можете попробовать.</p>
+generator: kyzylborda-docker-generator Dockerfile.generator ./generator.py
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: app
+  socket: ./app.sock
+  socket_type: http
