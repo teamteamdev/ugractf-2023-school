@@ -20,6 +20,11 @@ description: >
     задачи не изменилась.
   </p>
 
+  <p><em>Добавлено в 13:07:</em></p>
+  <p>
+    Добавлена прямая ссылка на спецификацию виртуальной машины.
+  </p>
+
   {{reboot_machine}}
 attachments_path: attachments
 generator: ../_scripts/kyzylborda-lib-generator

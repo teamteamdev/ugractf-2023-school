@@ -25,4 +25,8 @@ def make_app():
 
         return run_code(code, input)
 
+    @app.route("/<token>/specs/")
+    def specs(token):
+        return render_template("specs.html")
+
     return app

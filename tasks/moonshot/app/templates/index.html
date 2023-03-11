@@ -20,7 +20,7 @@
         padding-bottom: 0;
       }
 
-      .run {
+      .button {
         font-weight: bold;
         background-color: #aa4422;
         color: #ffffff;
@@ -29,7 +29,7 @@
         border: 2px solid #80331a;
         cursor: pointer;
       }
-      .run:hover, .run:active {
+      .button:hover, .button:active {
         background-color: #80331a;
       }
 
@@ -60,8 +60,8 @@
   </head>
   <body>
     <header>
-      <button class="run">RUN &nbsp; ▶</button>
-      <!-- <button class="help">?&#x20DD;</button> -->
+      <button class="button run">TRANSMIT and EXECUTE &nbsp; ▶</button>
+      <button class="button help">HELP &nbsp;&nbsp; ?&#x20DD;</button>
     </header>
 
     <main>
@@ -101,6 +101,10 @@ push a</textarea>
         })).text();
         output.value = result;
         output.placeholder = "(no output)";
+      });
+
+      document.querySelector(".help").addEventListener("click", async () => {
+        window.open("specs/");
       });
     </script>
   </body>
