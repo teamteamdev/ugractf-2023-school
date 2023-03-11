@@ -102,7 +102,7 @@ def check_server_param(decrypted_req):
     
     real_string = generate_string(SECRET_NUMBER)
     if real_string != string:
-        print(real_string)
+        print(real_string, file=sys.stderr)
         return False, None
     
     return True, SECRET_NUMBER
