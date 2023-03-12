@@ -62,7 +62,7 @@ This is help text, it is very long and it is very useful. If you don't read it, 
 | Name | has_arg | flag | val |
 | --- | --- | --- | --- |
 | help | no_argument | 0 | 104 == 'h' |
-| I_do_not_wanna_send_all_my_logs_to_fbi_but_I_agree_with_it_here_is_my_secret_code_for_this_operation | True | 0 | 0 |
+| I_do_not_wanna_send_all_my_logs_to_fbi_but_I_agree_with_it_here_is_my_secret_code_for_this_operation | required_argument | 0 | 0 |
 | cat | no_argument | 0 | 99 == 'c' |
 
 
@@ -75,7 +75,7 @@ This is help text, it is very long and it is very useful. If you don't read it, 
 
 ![](writeup/writeup_6_sub241b.png)
 
-Здесь мы видим, что инициализируется ncurses, выясняется максимальные размеры терминала, проверяется что размер минимум 9x9 и выхлоп функции sub_157F. если проверку не прошли, то выводится сообщение *System requirements not met* и выход из программы.
+Здесь мы видим, что инициализируется ncurses, выясняются максимальные размеры терминала, проверяется что размер минимум 9x9 и выхлоп функции sub_157F. если проверку не прошли, то выводится сообщение *System requirements not met* и выход из программы.
 
 Давайте посмотрим, что делает sub_157F:
 
