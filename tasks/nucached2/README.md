@@ -8,6 +8,6 @@ ivanq, ctb 200
 >
 > *Сервер этой задачи запущен в отдельном контейнере для вашей команды.*
 >
-> *https://nucached.s.2023.ugractf.ru/...*
+> *https://nucached.s.2023.ugractf.ru/token*
 
 [Write-up](WRITEUP.md)

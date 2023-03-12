@@ -10,6 +10,6 @@ gudn, web 150
 >
 > **Подсказка.** Создатели капчи, вероятно, вдохновлялись радугой — буквы нужно вводить в порядке цвета. 
 >
-> *https://payoff.s.2023.ugractf.ru/...*
+> *https://payoff.s.2023.ugractf.ru/token*
 
 [Write-up](WRITEUP.md)

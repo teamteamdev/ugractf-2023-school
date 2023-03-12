@@ -16,7 +16,7 @@ Encodes the file via base64, splits it into chunks and outputs the chunks one by
 
 ![example-code.png](writeup/example-code.png)
 
-Но вот если загрузить на сайт кадр из видео, то ответом будет `No message has been found.`. В подсказке нам предложили почувствовать себя в роли видеооператора, поэтому попробуем упростить программе задачу, обрезав картинку:
+Но вот если загрузить на сайт кадр из видео, то ответом будет `No message has been found.`. Попробуем упростить программе задачу, обрезав картинку:
 
 ![example-frame-cropped.png](writeup/example-frame-cropped.png)
 
@@ -26,7 +26,7 @@ Encodes the file via base64, splits it into chunks and outputs the chunks one by
 iVBORw0KGgoAAAANSUhEUgAAA4QAAABACAYAAABC37kEAAAjnElEQVR4nO3deVxU1f8/8NeAAyObCIqiaLihnxBIUXHHDdHEJZdP
 ```
 
-что явно похоже на кусок base64, разделенного по 100 символов.
+что явно похоже на кусок base64, разделённого по 100 символов.
 
 По-видимому, так придется проделать с каждым кадром видео. Можно их выдирать, например, руками, можно какой-нибудь графической программой, а можно автоматизировать процесс через `ffmpeg`:
 
@@ -44,7 +44,7 @@ ffmpeg
 
 ![frame-40.png](writeup/frame-40.png)
 
-После этого, заливая файлы по одному на сайт, можно убедиться, что нормально распознается все равно только половина кадров. Давайте пойдем дальше и попробуем сделать картинку более контрастной, как в примерах, чтобы использовались только четыре ярких цвета, как сгенерированных сайтом. Такое обычно делается через imagemagick; погуглив «imagemagick increase contrast», получаем такой код:
+После этого, заливая файлы по одному на сайт, можно убедиться, что нормально распознаётся всё равно только половина кадров. Пойдём дальше и попробуем сделать картинку более контрастной, как в примерах, чтобы использовались только четыре чётких цвета, как в коде, сгенерированном сайтом. Такое обычно делается через imagemagick; погуглив «imagemagick increase contrast», получаем такой код:
 
 ```bash
 mkdir saturated-frames
@@ -57,7 +57,7 @@ done
 
 Эти коды уже распознаются стабильно.
 
-Теперь парсинг этого чуда хочется оптимизировать, а то ходить на сайт с каждой картинкой — не дело. Загуглив «jabcode github», находим [репозиторий](https://github.com/jabcode/jabcode) с декодером. Там даже написано, как его собрать:
+Процесс хочется оптимизировать, а то ходить на сайт с каждой картинкой — не дело. Загуглив «jabcode github», находим [репозиторий с декодером](https://github.com/jabcode/jabcode). Там даже написано, как его собрать:
 
 ```shell
 $ git clone https://github.com/jabcode/jabcode
@@ -97,14 +97,14 @@ collect2: error: ld returned 1 exit status
 make: *** [Makefile:10: bin/jabcodeReader] Error 1
 ```
 
-Ага, мы не ищем легких путей. Открываем Issues на GitHub, видим открытый баг [Build warnings and errors](https://github.com/jabcode/jabcode/issues/44) с похожей ошибкой и комментарий с рекомендацией скомплировать с `-no-pie`:
+Ага, мы не ищем лёгких путей. Открываем Issues на GitHub, видим открытый баг [Build warnings and errors](https://github.com/jabcode/jabcode/issues/44) с похожей ошибкой и комментарий с рекомендацией скомплировать с `-no-pie`:
 
 ```shell
 $ make CFLAGS=-no-pie
 gcc jabreader.o -L../jabcode/build -ljabcode -L../jabcode/lib -ltiff -lpng16 -lz -lm -no-pie -o bin/jabcodeReader
 ```
 
-После этого должен был появиться файл `bin/jabcodeReader`, которому мы уже можем скармливать кадры:
+После этого должен появиться файл `bin/jabcodeReader`, которому мы уже можем скармливать кадры:
 
 ```bash
 for frame in saturated-frames/*; do
@@ -141,7 +141,7 @@ for frame in saturated-frames/*; do
 done | grep -v "JABCode Error" | uniq | base64 -d >flag.png
 ```
 
-В результате получаем файл:
+В результате получаем картинку:
 
 ![flag.png](writeup/flag.png)
 

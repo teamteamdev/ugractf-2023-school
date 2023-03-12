@@ -7,6 +7,6 @@ ivanq, web 200
 > *Сервер этой задачи запущен в отдельном контейнере для вашей команды.*
 >
 > [nucached.tar.gz](attachments/nucached.tar.gz)  
-> *https://nucached.s.2023.ugractf.ru/...*
+> *https://nucached.s.2023.ugractf.ru/token*
 
 [Write-up](WRITEUP.md)

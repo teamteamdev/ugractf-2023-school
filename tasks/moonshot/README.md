@@ -20,6 +20,6 @@ ivanq, pwn 300
 >
 > [jitvm.py](attachments/jitvm.py)  
 > [libc.a](attachments/libc.a)  
-> *https://moonshot.s.2023.ugractf.ru/...*
+> *https://moonshot.s.2023.ugractf.ru/token*
 
 [Write-up](WRITEUP.md)
