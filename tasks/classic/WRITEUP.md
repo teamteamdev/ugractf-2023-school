@@ -152,4 +152,4 @@ with open('1337-with-header.pict', 'wb') as pict:
 
 Теперь файл открывается в ImageMagick. Мы можем сконвертировать его в PNG и открыть. Нас встретит всё та же надпись с желанной строкой.
 
-**Флаг:** ugra_you_are_a_power_macintosh_user_81de016d
+Флаг: **ugra_you_are_a_power_macintosh_user_81de016d**

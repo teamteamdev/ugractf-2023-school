@@ -8,11 +8,11 @@ Usage: jab <file>
 Encodes the file via base64, splits it into chunks and outputs the chunks one by one to stdout
 ```
 
-Для начала хотелось бы понять, что JAB-коды вообще такое. Типичный кадр видео, содержащий код, выглядит так:
+Для начала хотелось бы понять, что вообще такое JAB-коды. Типичный кадр видео, содержащий код, выглядит так:
 
 ![example-frame.png](writeup/example-frame.png)
 
-Гугл на запрос "jab code" выдает сайт [jabcode.org](https://www.jabcode.org/). Если поиграться и посоздавать тестовые коды, например, из текста `12345`, то получится что-то, напоминающее кадр выше, но более цветастое. Если же число цветов снизить до 4, получится как раз картинка такого же вида:
+Гугл на запрос «jab code» выдает сайт [jabcode.org](https://www.jabcode.org/). Если поиграться и посоздавать тестовые коды, например, из текста `12345`, то получится что-то, напоминающее кадр выше, но более цветастое. Если же число цветов снизить до 4, получится как раз картинка такого же вида:
 
 ![example-code.png](writeup/example-code.png)
 
@@ -44,7 +44,7 @@ ffmpeg
 
 ![frame-40.png](writeup/frame-40.png)
 
-После этого, заливая файлы по одному на сайт, можно убедиться, что нормально распознается все равно только половина кадров. Давайте пойдем дальше и попробуем сделать картинку более контрастной, как в примерах, чтобы использовались только четыре ярких цвета, как сгенерированных сайтом. Такое обычно делается через imagemagick; погуглив "imagemagick increase contrast", получаем такой код:
+После этого, заливая файлы по одному на сайт, можно убедиться, что нормально распознается все равно только половина кадров. Давайте пойдем дальше и попробуем сделать картинку более контрастной, как в примерах, чтобы использовались только четыре ярких цвета, как сгенерированных сайтом. Такое обычно делается через imagemagick; погуглив «imagemagick increase contrast», получаем такой код:
 
 ```bash
 mkdir saturated-frames
@@ -57,7 +57,7 @@ done
 
 Эти коды уже распознаются стабильно.
 
-Теперь парсинг этого чуда хочется оптимизировать, а то ходить на сайт с каждой картинкой -- не дело. Загуглив "jabcode github", находим [репозиторий](https://github.com/jabcode/jabcode) с декодером. Там даже написано, как его собрать:
+Теперь парсинг этого чуда хочется оптимизировать, а то ходить на сайт с каждой картинкой — не дело. Загуглив «jabcode github», находим [репозиторий](https://github.com/jabcode/jabcode) с декодером. Там даже написано, как его собрать:
 
 ```shell
 $ git clone https://github.com/jabcode/jabcode
@@ -97,7 +97,7 @@ collect2: error: ld returned 1 exit status
 make: *** [Makefile:10: bin/jabcodeReader] Error 1
 ```
 
-Ага, мы не ищем легких путей. Открываем issues на github, видим открытую issue [Build warnings and errors](https://github.com/jabcode/jabcode/issues/44) с похожей ошибкой и комментарий с рекомендацией скомплировать с `-no-pie`:
+Ага, мы не ищем легких путей. Открываем Issues на GitHub, видим открытый баг [Build warnings and errors](https://github.com/jabcode/jabcode/issues/44) с похожей ошибкой и комментарий с рекомендацией скомплировать с `-no-pie`:
 
 ```shell
 $ make CFLAGS=-no-pie
@@ -133,7 +133,7 @@ IYQQQhoo6hASQgghhBBCSANFHUJCCCGEEEIIaaCoQ0gIIYQQQgghDRR1CAkhhBBCCCGkgaIOISGEEEII
 ...
 ```
 
-Осталось проигнорировать ошибки, избавиться от повторов и распарсить `base64`:
+Осталось проигнорировать ошибки, избавиться от повторов и распарсить base64:
 
 ```bash
 for frame in saturated-frames/*; do
@@ -145,4 +145,4 @@ done | grep -v "JABCode Error" | uniq | base64 -d >flag.png
 
 ![flag.png](writeup/flag.png)
 
-Флаг: **ugra_airgaps_can_be_bypassed_6m2amyh2xtwm**.
+Флаг: **ugra_airgaps_can_be_bypassed_6m2amyh2xtwm**
