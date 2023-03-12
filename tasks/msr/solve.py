@@ -58,6 +58,7 @@ b = """EB 1F 5E CC DE 63 49 AD 46 79 DE 8D 68 6E 42 B3 7E AA EB 15 6D D8 ED BF C
 b = bytes.fromhex(b)
 dec = decrypt_1(b, CAT_ART_4.encode())
 req_str = "".join(map(chr, dec))
+print(req_str)
 
 b = encrypt_2(req_str.encode(), CAT_ART_3.encode())
 b = "".join(map(lambda x: f"{x:02X} ", b))
